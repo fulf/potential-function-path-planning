@@ -1,19 +1,27 @@
 <style>
-#canvas{border:1px solid red;}
+#canvas{border:1px solid red;background-color:lightgray}
+body{background-color:black}
+*:not(button){color:gray}
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<h4>Proiect Bazele Roboticii</h4>
-<button id=setStart>Set starting point</button>
-<button id=setObstacle>Set obstacles</button>
-<button id=setFinish>Set finish point</button>
-<button id=run>Run simulation</button>
-<button id=pause>Pause simulation</button>
-<button id=stop>Stop simulation</button>
-<button id=saveState>Save simulation</button>
-<button id=loadState>Load simulation</button>
-<br/>
-<div style="width:100%; height:100%; display: flex">
-<canvas id="canvas" width=1024 height=512 style="width: 1024px; height: 512px;"></canvas>
-<textarea id="state" style="float: right; height: 512px; flex:1"></textarea>
-</div>
-<script src="br.js"></script>
+<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<h4>Proiect Bazele Roboticii</h4>
+	<button id=setStart>Set starting point</button>
+	<button id=setObstacle>Set obstacles</button>
+	<button id=setFinish>Set finish point</button>
+	<button id=run>Run simulation</button>
+	<button id=pause>Pause simulation</button>
+	<button id=stop>Stop simulation</button>
+	<button id=saveState>Save simulation</button>
+	<button id=loadState>Load simulation</button>
+	<br/>
+	<div style="width:100%; height:100%; display: flex">
+		<canvas id="canvas" width=1024 height=512 style="width: 1024px; height: 512px;"></canvas>
+		<textarea id="state" style="float: right; height: 512px; flex:1"></textarea>
+	</div>
+	<script src="scripts/init.js"></script>
+	<script src="scripts/calc.js"></script>
+	<script src="scripts/state.js"></script>
+	<script src="scripts/draw.js"></script>
+	<script src="scripts/main.js" async></script>
+</body>
