@@ -16,7 +16,7 @@ $('#run').click(function(){
   if(state!="paused")
     oldAppState = JSON.stringify(appState);
   state="runningSimulation";
-  simulation = setInterval(simulate, 1000/60);
+  simulation = setInterval(simulate, 1000/100);
 });
 
 $('#pause').click(function(){
@@ -32,8 +32,8 @@ $('#stop').click(function(){
 });
 
 function simulate(){
-  xForce = 4;
-  yForce = 4;
+  xForce = 1;
+  yForce = 1;
 
   xDistance = appState.finishPoint.x - appState.startPoint.x;
   yDistance = appState.finishPoint.y - appState.startPoint.y;
@@ -45,6 +45,33 @@ function simulate(){
   for(i in appState.obstacles) {
     middlePoints.push(getObstacleMiddle(appState.obstacles[i]));
   }
+
+  //TODO: Add direction changing code + verification
+  /** Something like:
+   * if (graphMovement) {
+   *    if(actorFinishedRoute(newDestVector)) {
+   *      graphMovement = false;
+   *    } else {
+   *      destXDirection = newDestVector.xDir;
+   *      destYDirection = newDestVector.yDir;
+   *    }
+   * } else if(actorIsStuck(_lastTenPositions)) {
+   *    newDestVector = getFastestDirectRoute(currentPosition, obstacles, finishPoint);
+   *    graphMovement = true;
+   * } else {
+   *    newDestVector = applyPotentialForce({xDir: destXDirection, yDir: destYDirection})
+   *    destXDirection = newDestVector.xDir;
+   *    destYDirection = newDestVector.yDir;
+   * }
+   * 
+   * applyPotentialForce ar trebui, la alegere:
+   * A. sa verifice daca currentPosition e in raza A * k fata de obstacol. Pt fiecare obstacol
+   * unde conditia e valabila (e in range), aplicam un vector de impingere (care se calculeaza pe baza de pozitie / linia cea mai scurta spre obstacol / 
+   * ?unghiul - 90 de grade pt perpendicularitate SAU m grade pt cazul in care linia atinge colt de obstacol)
+   * B. solutia gradient - obstacolele au inaltimea 255 sa zicem, si se aplica o functie gradient in functie de A * k i guess. Actorul o va lua
+   * pe distanta care ofera cel mai mic cost (Cu conditia sa nu se intoarca pe unde a venit)
+   */
+  console.log(destXDirection, destYDirection);
 
   appState.startPoint.x += destXDirection * xForce;
   appState.startPoint.y += destYDirection * yForce;
