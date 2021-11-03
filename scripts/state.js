@@ -5,8 +5,6 @@ function saveState() {
 
     configCatClient.getValueAsync('saveStateAsXml',  false)
         .then(xmlFormat => {
-            console.log(saveState);
-
             if (xmlFormat) {
                 appStateSave.value = x2js.json2xml_str(JSON.parse(saveState));
             } else {
