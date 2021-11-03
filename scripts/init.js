@@ -22,7 +22,9 @@ var DELAY = 200,
     vTiles = hTiles / 2,
     tileWidth = cw / hTiles,
     tileHeight = ch / vTiles,
-    forces = [];
+    forces = [],
+    configCatClient = configcat.createClientWithLazyLoad("jp7ZCESv-0CF7lTa0VgyNg/WD5DuPbFkUWGP6l6f3P0vA", { cacheTimeToLiveSeconds: 1 }),
+    x2js = new X2JS();
 
 window.requestAnimFrame = (function (callback) {
     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
